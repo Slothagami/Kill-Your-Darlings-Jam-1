@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://dvrxnfbxqtdet"
+path="res://.godot/imported/postion_compositor_compute.glsl-64540cfb25a65252c46319069b0589c5.res"
+
+[deps]
+
+source_file="res://pre_prepared_elements/compositor/postion_compositor_compute.glsl"
+dest_files=["res://.godot/imported/postion_compositor_compute.glsl-64540cfb25a65252c46319069b0589c5.res"]
+
+[params]
+
