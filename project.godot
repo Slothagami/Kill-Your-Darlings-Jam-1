@@ -14,7 +14,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="Shader Lecture LIDAR Demo"
+config/name="dashnog-render-prototype"
 run/main_scene="uid://ch3hxrxjpgtbe"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
