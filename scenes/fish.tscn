@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://1xgtx5wyaw7g"]
+
+[ext_resource type="Script" uid="uid://vmrqf1karvex" path="res://scripts/fish.gd" id="1_n6yr6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bj4t2"]
+size = Vector2(34, 16)
+
+[node name="Fish" type="Area2D" unique_id=1375004632]
+scale = Vector2(2, 2)
+script = ExtResource("1_n6yr6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=967619741]
+shape = SubResource("RectangleShape2D_bj4t2")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=183202743]
+position = Vector2(-41, -10)
+scale = Vector2(0.10714286, 0.10714286)
+polygon = PackedVector2Array(233, 58, 267, 121, 228, 164, 278, 142, 305, 134, 342, 146, 403, 149, 458, 141, 497, 128, 529, 118, 516, 101, 493, 83, 466, 73, 424, 70, 402, 76, 362, 24, 353, 74, 338, 82, 307, 85, 285, 91)

@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://dvn0jqddiymf6"]
+
+[ext_resource type="Script" uid="uid://frbgxp5ejfp1" path="res://scripts/level.gd" id="1_2q6dc"]
+[ext_resource type="PackedScene" uid="uid://buf2uwg8c8d3p" path="res://scenes/bullet.tscn" id="2_w8frs"]
+[ext_resource type="PackedScene" uid="uid://1xgtx5wyaw7g" path="res://scenes/fish.tscn" id="3_mx8sn"]
+[ext_resource type="Script" uid="uid://dt2mjqab311da" path="res://scripts/gun.gd" id="4_ppgk2"]
+[ext_resource type="Script" uid="uid://dw1ae0f55foek" path="res://scripts/hud.gd" id="5_2r41h"]
+[ext_resource type="AudioStream" uid="uid://blkxdwpbkdv6" path="res://sounds/mrfriends-pistol-shot-233473.mp3" id="5_b121j"]
+[ext_resource type="AudioStream" uid="uid://cofhlip33rsco" path="res://sounds/freesound_community-072807_heavy-machine-gun-50-caliber-39765.mp3" id="6_8c41q"]
+[ext_resource type="AudioStream" uid="uid://cj1p68rxuh3q3" path="res://sounds/freesound_community-080902_shotgun-39753.mp3" id="7_olg7q"]
+[ext_resource type="AudioStream" uid="uid://dg1m20a41r1o6" path="res://sounds/freesound_community-1911-reload-6248.mp3" id="8_olg7q"]
+[ext_resource type="AudioStream" uid="uid://bwnn7no0e2ol3" path="res://sounds/freesound_community-g36c-reload-sound-84437.mp3" id="9_t1rx8"]
+[ext_resource type="AudioStream" uid="uid://cguixqxtxd1pj" path="res://sounds/freesound_community-shotgun-sounds-6464.mp3" id="10_t1rx8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bj4t2"]
+size = Vector2(66, 20)
+
+[node name="Level" type="Node2D" unique_id=2106685574]
+script = ExtResource("1_2q6dc")
+fish_scene = ExtResource("3_mx8sn")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=30464698]
+position = Vector2(574, 324)
+
+[node name="Water" type="Polygon2D" parent="." unique_id=104497426]
+z_index = -1
+position = Vector2(55, -466.94162)
+scale = Vector2(1, 9.631494)
+color = Color(0.2, 0.49019608, 0.6784314, 0.61960787)
+polygon = PackedVector2Array(-80, 68, -85, 680, 537.7446, 681.97375, 1177, 684, 1170, 68)
+
+[node name="RodOrigin" type="Marker2D" parent="." unique_id=930464036]
+position = Vector2(572, 88)
+
+[node name="RodLine" type="Line2D" parent="." unique_id=579265927]
+position = Vector2(-68, 8)
+
+[node name="Gun" type="Node2D" parent="." unique_id=1060466463]
+position = Vector2(572, 88)
+script = ExtResource("4_ppgk2")
+bullet_scene = ExtResource("2_w8frs")
+pistol_sound = ExtResource("5_b121j")
+machine_gun_sound = ExtResource("6_8c41q")
+shotgun_sound = ExtResource("7_olg7q")
+pistol_reload_sound = ExtResource("8_olg7q")
+machine_gun_reload_sound = ExtResource("9_t1rx8")
+shotgun_reload_sound = ExtResource("10_t1rx8")
+
+[node name="Polygon2D" type="Polygon2D" parent="Gun" unique_id=452959793]
+color = Color(0.019607844, 0.7764706, 0, 1)
+offset = Vector2(-468, -66)
+polygon = PackedVector2Array(470, 65, 469, 108, 486, 108, 486, 87, 527, 80, 539, 64)
+
+[node name="Muzzle" type="Marker2D" parent="Gun" unique_id=1306310867]
+position = Vector2(67, 4)
+
+[node name="Hurtbox" type="Area2D" parent="Gun" unique_id=1599071215]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gun/Hurtbox" unique_id=938638578]
+position = Vector2(35, 9)
+shape = SubResource("RectangleShape2D_bj4t2")
+
+[node name="FireSound" type="AudioStreamPlayer2D" parent="Gun" unique_id=640734601]
+
+[node name="ReloadSound" type="AudioStreamPlayer2D" parent="Gun" unique_id=51430877]
+
+[node name="Bullets" type="Node2D" parent="." unique_id=826913849]
+
+[node name="FishContainer" type="Node2D" parent="." unique_id=1988451627]
+
+[node name="FishSpawnTimer" type="Timer" parent="." unique_id=1674664469]
+wait_time = 0.8
+autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=343359981]
+script = ExtResource("5_2r41h")
+
+[node name="Darkness" type="ColorRect" parent="CanvasLayer" unique_id=792054487]
+z_index = -14
+offset_left = -103.0
+offset_top = -36.0
+offset_right = 1217.0
+offset_bottom = 696.0
+color = Color(0, 0, 0, 1)
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer" unique_id=1750331508]
+anchors_preset = -1
+anchor_left = 0.022000002
+anchor_top = 0.062000003
+anchor_right = 0.022000002
+anchor_bottom = 0.062000003
+offset_left = -20.344002
+offset_top = -11.1760025
+offset_right = 19.655998
+offset_bottom = 11.8239975
