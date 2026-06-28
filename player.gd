@@ -15,14 +15,12 @@ var hit_strength = PUNCH_FORCE
 
 @onready var camera     = $camera
 @onready var sight_ray  = $camera/sight_ray
-@onready var grab_ray   = $camera/grab_ray
-@onready var grab_timer = $grab_timer
+
 @onready var crosshair  = $crosshair
 @onready var force_indicator = $crosshair/force_indicator
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	grab_time = grab_timer.wait_time
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -54,18 +52,6 @@ func _physics_process(delta: float) -> void:
 			
 	hit_strength = clamp(hit_strength, 0.25, 10)
 		
-	if Input.is_action_just_pressed("grab"):
-		# Cast a ray to find the nearest physics body and launch the player towards it
-		if grab_ray.is_colliding():
-			var target = grab_ray.get_collider()
-			if target is RigidBody3D:
-				# lerp the players position to a specified distance
-				# away from the enemy in a fixed ammount of time
-				in_grab_state = true 
-				grab_start_pos = position
-				grab_target_pos = target.position
-				grab_timer.start()
-		
 	if Input.is_action_just_pressed("attack"):
 		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -90,17 +76,8 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 		
-	# Grab state overrides controls
-	if in_grab_state:
-		var displacement = grab_target_pos - grab_start_pos
-		velocity = displacement / grab_time
-		
 	# update ui
 	crosshair.rotation = hit_angle
 	force_indicator.scale.x = 4 * hit_strength
 	
 	move_and_slide()
-
-
-func _on_grab_animation_finish() -> void:
-	in_grab_state = false
