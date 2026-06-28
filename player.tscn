@@ -36,14 +36,18 @@ mesh = SubResource("CapsuleMesh_d14c3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 
 [node name="sight_ray" type="RayCast3D" parent="camera" unique_id=1438137964]
-target_position = Vector3(0, 0, -2)
+target_position = Vector3(0, 0, -4)
 
 [node name="crosshair" type="Sprite2D" parent="." unique_id=615515627]
-position = Vector2(576, 324)
+position = Vector2(800, 450)
 scale = Vector2(0.1, 0.1)
 texture = SubResource("GradientTexture2D_d14c3")
 
-[node name="force_indicator" type="Sprite2D" parent="crosshair" unique_id=1769155395]
+[node name="force_indicator" type="Sprite2D" parent="." unique_id=1229160599]
+position = Vector2(800, 450)
+scale = Vector2(0.1, 0.1)
+
+[node name="guage" type="Sprite2D" parent="force_indicator" unique_id=2138906674]
 position = Vector2(169.99976, -10)
 scale = Vector2(9.09375, 0.3125)
 texture = SubResource("GradientTexture2D_iumta")

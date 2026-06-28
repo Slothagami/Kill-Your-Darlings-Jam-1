@@ -9,9 +9,12 @@ albedo_color = Color(1, 0.38900006, 0.22000003, 1)
 material = SubResource("StandardMaterial3D_7xaro")
 
 [node name="block" type="RigidBody3D" unique_id=321213083]
+contact_monitor = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=737623920]
 shape = SubResource("BoxShape3D_d14c3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=126985268]
 mesh = SubResource("BoxMesh_d14c3")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -16,8 +16,9 @@ var hit_strength = PUNCH_FORCE
 @onready var camera     = $camera
 @onready var sight_ray  = $camera/sight_ray
 
-@onready var crosshair  = $crosshair
-@onready var force_indicator = $crosshair/force_indicator
+@onready var crosshair       = $crosshair
+@onready var force_indicator = $force_indicator
+@onready var force_guage     = $force_indicator/guage
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -77,7 +78,12 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 		
 	# update ui
-	crosshair.rotation = hit_angle
-	force_indicator.scale.x = 4 * hit_strength
+	force_indicator.rotation = hit_angle
+	force_guage.scale.x = 4 * hit_strength
+	
+	if sight_ray.is_colliding():
+		crosshair.scale = Vector2(0.15, 0.15)
+	else:
+		crosshair.scale = Vector2(0.1, 0.1)
 	
 	move_and_slide()
