@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-const SPEED         = 11.0
+const SPEED         = 5.0
 const JUMP_VELOCITY = 4.5
 const PUNCH_FORCE   = 5
 const sensitivity   = 0.005
@@ -10,10 +10,15 @@ var grab_start_pos:  Vector3
 var grab_target_pos: Vector3
 var grab_time
 
-@onready var camera    = $camera
-@onready var sight_ray = $camera/sight_ray
-@onready var grab_ray  = $camera/grab_ray
+var hit_angle = 0
+var hit_strength = PUNCH_FORCE
+
+@onready var camera     = $camera
+@onready var sight_ray  = $camera/sight_ray
+@onready var grab_ray   = $camera/grab_ray
 @onready var grab_timer = $grab_timer
+@onready var crosshair  = $crosshair
+@onready var force_indicator = $crosshair/force_indicator
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -36,6 +41,17 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		
+	if Input.is_action_just_pressed("adjust_up"):
+		if Input.is_action_pressed("modifier_key"):
+			hit_strength -= .5
+		else:
+			hit_angle += 2*PI / 20
+	if Input.is_action_just_pressed("adjust_down"):
+		if Input.is_action_pressed("modifier_key"):
+			hit_strength += .5
+		else:
+			hit_angle -= 2*PI / 20
+		
 	if Input.is_action_just_pressed("grab"):
 		# Cast a ray to find the nearest physics body and launch the player towards it
 		if grab_ray.is_colliding():
@@ -54,8 +70,8 @@ func _physics_process(delta: float) -> void:
 			var target = sight_ray.get_collider()
 			if target is RigidBody3D:
 				target.apply_impulse(
-					transform.basis * Vector3(0,0,-1) * PUNCH_FORCE, 
-					sight_ray.get_collision_point()
+					transform.basis * Vector3(0,0,-1) * hit_strength, 
+					sight_ray.get_collision_point() - target.position
 				)
 
 	# Movement
@@ -73,7 +89,10 @@ func _physics_process(delta: float) -> void:
 		var displacement = grab_target_pos - grab_start_pos
 		velocity = displacement / grab_time
 		
-
+	# update ui
+	crosshair.rotation = hit_angle
+	force_indicator.scale.x = 4 * hit_strength
+	
 	move_and_slide()
 
 

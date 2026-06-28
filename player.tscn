@@ -15,6 +15,12 @@ gradient = SubResource("Gradient_4flbx")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="Gradient" id="Gradient_onrkg"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_iumta"]
+gradient = SubResource("Gradient_onrkg")
+
 [node name="player" type="CharacterBody3D" unique_id=863557044]
 script = ExtResource("1_4flbx")
 
@@ -41,20 +47,17 @@ wait_time = 0.2
 [node name="grab_timer2" type="Timer" parent="." unique_id=1708114857]
 wait_time = 0.2
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=615515627]
+[node name="crosshair" type="Sprite2D" parent="." unique_id=615515627]
 position = Vector2(576, 324)
 scale = Vector2(0.1, 0.1)
 texture = SubResource("GradientTexture2D_d14c3")
 
-[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1064701413]
-position = Vector2(576, 324)
-scale = Vector2(0.1, 0.1)
-texture = SubResource("GradientTexture2D_d14c3")
-
-[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=1221486029]
-position = Vector2(576, 324)
-scale = Vector2(0.1, 0.1)
-texture = SubResource("GradientTexture2D_d14c3")
+[node name="force_indicator" type="Sprite2D" parent="crosshair" unique_id=1769155395]
+position = Vector2(169.99976, -10)
+scale = Vector2(9.09375, 0.3125)
+texture = SubResource("GradientTexture2D_iumta")
+centered = false
+offset = Vector2(0, 1)
 
 [connection signal="timeout" from="grab_timer" to="." method="_on_grab_animation_finish"]
 [connection signal="timeout" from="grab_timer2" to="." method="_on_grab_animation_finish"]
