@@ -10,7 +10,7 @@ var grab_start_pos:  Vector3
 var grab_target_pos: Vector3
 var grab_time
 
-var hit_angle = 0
+var hit_angle = PI/2
 var hit_strength = PUNCH_FORCE
 
 @onready var camera     = $camera
@@ -43,14 +43,16 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("adjust_up"):
 		if Input.is_action_pressed("modifier_key"):
-			hit_strength -= .5
+			hit_strength -= .25
 		else:
 			hit_angle += 2*PI / 20
 	if Input.is_action_just_pressed("adjust_down"):
 		if Input.is_action_pressed("modifier_key"):
-			hit_strength += .5
+			hit_strength += .25
 		else:
 			hit_angle -= 2*PI / 20
+			
+	hit_strength = clamp(hit_strength, 0.25, 10)
 		
 	if Input.is_action_just_pressed("grab"):
 		# Cast a ray to find the nearest physics body and launch the player towards it
@@ -65,13 +67,17 @@ func _physics_process(delta: float) -> void:
 				grab_timer.start()
 		
 	if Input.is_action_just_pressed("attack"):
+		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		
 		# Cast a ray to find the nearest physics body and apply a force
 		if sight_ray.is_colliding():
 			var target = sight_ray.get_collider()
+			var hit_dir = Vector3.FORWARD.rotated(Vector3.UP, PI/2 * .8).rotated(Vector3.FORWARD, hit_angle)
 			if target is RigidBody3D:
 				target.apply_impulse(
-					transform.basis * Vector3(0,0,-1) * hit_strength, 
-					sight_ray.get_collision_point() - target.position
+					transform.basis * hit_dir * hit_strength, 
+					sight_ray.get_collision_point() - target.global_position
 				)
 
 	# Movement
