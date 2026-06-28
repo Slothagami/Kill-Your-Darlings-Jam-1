@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://0fan6cl30i8g"]
+
+[ext_resource type="Texture2D" uid="uid://dymh7cbrnri5f" path="res://texture_01.png" id="1_oj3tl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cgngl"]
+albedo_texture = ExtResource("1_oj3tl")
+uv1_scale = Vector3(1000, 1000, 1000)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_d14c3"]
+material = SubResource("StandardMaterial3D_cgngl")
+size = Vector2(1000, 1000)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_d14c3"]
+
+[node name="floor" type="StaticBody3D" unique_id=538442016]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=679781455]
+mesh = SubResource("PlaneMesh_d14c3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1621078657]
+shape = SubResource("WorldBoundaryShape3D_d14c3")

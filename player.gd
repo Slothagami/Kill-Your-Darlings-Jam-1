@@ -1,0 +1,81 @@
+extends CharacterBody3D
+
+const SPEED         = 11.0
+const JUMP_VELOCITY = 4.5
+const PUNCH_FORCE   = 5
+const sensitivity   = 0.005
+
+var in_grab_state = false
+var grab_start_pos:  Vector3
+var grab_target_pos: Vector3
+var grab_time
+
+@onready var camera    = $camera
+@onready var sight_ray = $camera/sight_ray
+@onready var grab_ray  = $camera/grab_ray
+@onready var grab_timer = $grab_timer
+
+func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	grab_time = grab_timer.wait_time
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		self.rotate_y(-event.relative.x * sensitivity)
+		camera.rotate_x(-event.relative.y * sensitivity)
+		camera.rotation.x = clamp(camera.rotation.x, -PI/2, PI/2)
+
+func _physics_process(delta: float) -> void:
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+		
+	# Controls
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+		
+	if Input.is_action_just_pressed("pause"):
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		
+	if Input.is_action_just_pressed("grab"):
+		# Cast a ray to find the nearest physics body and launch the player towards it
+		if grab_ray.is_colliding():
+			var target = grab_ray.get_collider()
+			if target is RigidBody3D:
+				# lerp the players position to a specified distance
+				# away from the enemy in a fixed ammount of time
+				in_grab_state = true 
+				grab_start_pos = position
+				grab_target_pos = target.position
+				grab_timer.start()
+		
+	if Input.is_action_just_pressed("attack"):
+		# Cast a ray to find the nearest physics body and apply a force
+		if sight_ray.is_colliding():
+			var target = sight_ray.get_collider()
+			if target is RigidBody3D:
+				target.apply_impulse(
+					transform.basis * Vector3(0,0,-1) * PUNCH_FORCE, 
+					sight_ray.get_collision_point()
+				)
+
+	# Movement
+	var input_dir := Input.get_vector("left", "right", "forward", "backward")
+	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if direction:
+		velocity.x = direction.x * SPEED
+		velocity.z = direction.z * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.z = move_toward(velocity.z, 0, SPEED)
+		
+	# Grab state overrides controls
+	if in_grab_state:
+		var displacement = grab_target_pos - grab_start_pos
+		velocity = displacement / grab_time
+		
+
+	move_and_slide()
+
+
+func _on_grab_animation_finish() -> void:
+	in_grab_state = false

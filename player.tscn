@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://co1y4p2f6iopx"]
+
+[ext_resource type="Script" uid="uid://dshius3sohcey" path="res://player.gd" id="1_4flbx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d14c3"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_d14c3"]
+
+[sub_resource type="Gradient" id="Gradient_4flbx"]
+offsets = PackedFloat32Array(0, 0.51495016, 0.6312292, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_d14c3"]
+gradient = SubResource("Gradient_4flbx")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="player" type="CharacterBody3D" unique_id=863557044]
+script = ExtResource("1_4flbx")
+
+[node name="hitbox" type="CollisionShape3D" parent="." unique_id=59718621]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0352875, 0)
+shape = SubResource("CapsuleShape3D_d14c3")
+
+[node name="mesh" type="MeshInstance3D" parent="." unique_id=25975737]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0352875, 0)
+mesh = SubResource("CapsuleMesh_d14c3")
+
+[node name="camera" type="Camera3D" parent="." unique_id=898312643]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+
+[node name="sight_ray" type="RayCast3D" parent="camera" unique_id=1438137964]
+target_position = Vector3(0, 0, -2)
+
+[node name="grab_ray" type="RayCast3D" parent="camera" unique_id=381515763]
+target_position = Vector3(0, 0, -18)
+
+[node name="grab_timer" type="Timer" parent="." unique_id=668509268]
+wait_time = 0.2
+
+[node name="grab_timer2" type="Timer" parent="." unique_id=1708114857]
+wait_time = 0.2
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=615515627]
+position = Vector2(576, 324)
+scale = Vector2(0.1, 0.1)
+texture = SubResource("GradientTexture2D_d14c3")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1064701413]
+position = Vector2(576, 324)
+scale = Vector2(0.1, 0.1)
+texture = SubResource("GradientTexture2D_d14c3")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=1221486029]
+position = Vector2(576, 324)
+scale = Vector2(0.1, 0.1)
+texture = SubResource("GradientTexture2D_d14c3")
+
+[connection signal="timeout" from="grab_timer" to="." method="_on_grab_animation_finish"]
+[connection signal="timeout" from="grab_timer2" to="." method="_on_grab_animation_finish"]
