@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ns5o781kdyry" path="res://scenes/wall.tscn" id="6_dwbse"]
 [ext_resource type="PackedScene" uid="uid://ckhytaageoibd" path="res://scenes/grabbable_trigger.tscn" id="9_ioo17"]
 [ext_resource type="PackedScene" uid="uid://df20ywa4lo7l7" path="res://scenes/prompt_trigger.tscn" id="10_wse8f"]
+[ext_resource type="PackedScene" uid="uid://do5k716ek70p4" path="res://thin_wall.tscn" id="11_e3hyu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iumta"]
 size = Vector3(1, 100, 500)
@@ -68,8 +69,11 @@ light_energy = 0.2
 [node name="WorldEnvironment" type="WorldEnvironment" parent="environment/DirectionalLight3D2" unique_id=699004839]
 environment = SubResource("Environment_d14c3")
 
+[node name="thin_wall" parent="environment" unique_id=569919550 instance=ExtResource("11_e3hyu")]
+transform = Transform3D(-8.742278e-07, 3, -4.371139e-08, 0, -1.3113416e-07, -1, -20, -1.3113416e-07, 1.9106855e-15, -4.750183, 6.0564365, -23.277294)
+
 [node name="player" parent="." unique_id=863557044 instance=ExtResource("2_fj7yv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 73.23356)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 72.014595)
 
 [node name="puzzles" type="Node3D" parent="." unique_id=1542881138]
 
@@ -288,15 +292,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -0.5, -12.114475)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, -118.66353)
 
 [node name="block3" parent="puzzles/puzzle 3" unique_id=750917027 instance=ExtResource("4_aqk2v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.547, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9775352, 0, 9.240723)
 
 [node name="block5" parent="puzzles/puzzle 3" unique_id=170541157 instance=ExtResource("4_aqk2v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.768, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9530087, 0, 8.654388)
 
 [node name="block6" parent="puzzles/puzzle 3" unique_id=1626827509 instance=ExtResource("4_aqk2v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.552, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.710888, 0, 9.235474)
 
 [node name="trigger_manager" parent="puzzles/puzzle 3" unique_id=1110950778 node_paths=PackedStringArray("target") instance=ExtResource("5_gbfbk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.8608246)
 target = NodePath("../../../environment/boundary")
 
 [node name="block_trigger" parent="puzzles/puzzle 3/trigger_manager" unique_id=1095847528 instance=ExtResource("5_pkg7o")]
@@ -340,3 +345,24 @@ text = "Shift+Scroll to adjust bonking force."
 [node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/prompt_trigger3" unique_id=25197010]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -8.93443)
 shape = SubResource("BoxShape3D_ic0uy")
+
+[node name="walls" type="Node3D" parent="." unique_id=470254385]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10.876695, 0, 57.98864)
+
+[node name="thin_wall" parent="walls" unique_id=1082703065 instance=ExtResource("11_e3hyu")]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 1, 76.95126, 0, -0.71341896)
+
+[node name="thin_wall4" parent="walls" unique_id=1130343773 instance=ExtResource("11_e3hyu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.826462, 0, -0.7134228)
+
+[node name="thin_wall2" parent="walls" unique_id=1467374357 instance=ExtResource("11_e3hyu")]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 1, 67.09737, 0, -21.185003)
+
+[node name="thin_wall5" parent="walls" unique_id=1030112819 instance=ExtResource("11_e3hyu")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -17.603783, 0, -16.537228)
+
+[node name="thin_wall6" parent="walls" unique_id=82016769 instance=ExtResource("11_e3hyu")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -17.603783, 0, -4.52035)
+
+[node name="thin_wall7" parent="walls" unique_id=847017994 instance=ExtResource("11_e3hyu")]
+transform = Transform3D(-8.742278e-08, 0, -1, 0, 1, 0, 2, 0, -4.371139e-08, 175.31863, 0, -10.895944)
