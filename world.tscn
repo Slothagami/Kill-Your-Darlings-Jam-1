@@ -126,6 +126,9 @@ target = NodePath("../wall")
 [node name="block_trigger3" parent="puzzle 4/trigger_manager" unique_id=1186671472 instance=ExtResource("5_pkg7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1, 0)
 
+[node name="block_trigger4" parent="puzzle 4/trigger_manager" unique_id=1083472797 instance=ExtResource("5_pkg7o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 0)
+
 [node name="large_wall3" parent="puzzle 4" unique_id=1258749614 instance=ExtResource("5_036b0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -0.5, -12.114475)
 
@@ -156,14 +159,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -0.5, -12.114475)
 [node name="puzzle 3" type="Node3D" parent="." unique_id=734005563]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, -118.66353)
 
-[node name="immovable_block3" parent="puzzle 3" unique_id=2068529010 instance=ExtResource("3_tlwt5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-
-[node name="immovable_block2" parent="puzzle 3" unique_id=436914467 instance=ExtResource("3_tlwt5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-
-[node name="immovable_block" parent="puzzle 3" unique_id=1329018159 instance=ExtResource("3_tlwt5")]
-
 [node name="block3" parent="puzzle 3" unique_id=750917027 instance=ExtResource("4_aqk2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.547, 0, 0)
 
@@ -172,3 +167,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.768, 0, 0)
 
 [node name="block6" parent="puzzle 3" unique_id=1626827509 instance=ExtResource("4_aqk2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.552, 0, 0)
+
+[node name="trigger_manager" parent="puzzle 3" unique_id=1110950778 node_paths=PackedStringArray("target") instance=ExtResource("5_gbfbk")]
+target = NodePath("../../boundary")
+
+[node name="block_trigger" parent="puzzle 3/trigger_manager" unique_id=1095847528 instance=ExtResource("5_pkg7o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+
+[node name="block_trigger2" parent="puzzle 3/trigger_manager" unique_id=1932173784 instance=ExtResource("5_pkg7o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, 0)
+
+[node name="block_trigger3" parent="puzzle 3/trigger_manager" unique_id=1514200977 instance=ExtResource("5_pkg7o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, 0)

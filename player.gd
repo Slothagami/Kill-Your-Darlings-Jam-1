@@ -8,13 +8,14 @@ const sensitivity   = 0.005
 var in_grab_state = false
 var grab_start_pos:  Vector3
 var grab_target_pos: Vector3
-var grab_time
+var grabbing: RigidBody3D = null
 
 var hit_angle = PI/2
 var hit_strength = PUNCH_FORCE
 
 @onready var camera     = $camera
 @onready var sight_ray  = $camera/sight_ray
+@onready var grab_node  = $camera/grab_node
 
 @onready var crosshair       = $crosshair
 @onready var force_indicator = $force_indicator
@@ -40,6 +41,9 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		
+	if Input.is_action_just_pressed("restart"):
+		get_tree().reload_current_scene()
+		
 	if Input.is_action_just_pressed("adjust_up"):
 		if Input.is_action_pressed("modifier_key"):
 			hit_strength -= .25
@@ -52,6 +56,15 @@ func _physics_process(delta: float) -> void:
 			hit_angle -= 2*PI / 20
 			
 	hit_strength = clamp(hit_strength, 0.25, 10)
+	
+	if Input.is_action_just_pressed("grab"):
+		if grabbing == null:
+			if sight_ray.is_colliding():
+				var target = sight_ray.get_collider()
+				if target is RigidBody3D:
+					grabbing = target
+		else:
+			grabbing = null
 		
 	if Input.is_action_just_pressed("attack"):
 		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
@@ -76,6 +89,10 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+		
+	# picking up boxes
+	if grabbing != null:
+		grabbing.global_position = grab_node.global_position
 		
 	# update ui
 	force_indicator.rotation = hit_angle

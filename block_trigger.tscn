@@ -1,41 +1,103 @@
 [gd_scene format=3 uid="uid://b1fbxyd86ohlv"]
 
 [sub_resource type="GDScript" id="GDScript_mtqsv"]
-script/source = "extends Area3D
+script/source = "extends Node3D
 
 var colliding = false
+@onready var colliders = $colliders
 
-func _on_body_entered(body: Node3D) -> void:
-	if body is RigidBody3D:
-		colliding = true 
+func _process(delta: float) -> void:
+	var collision_list = []
+	for collider in colliders.get_children():
+		collision_list += collider.get_overlapping_bodies()
+		
+	# colliding if at least one instance touching all 8 corners of the cube
+	colliding = max_duplicates(collision_list) >= 8
+
+
+func max_duplicates(list):
+	if len(list) == 0: return 0
 	
-func _on_body_exited(body: Node3D) -> void:
-	if body is RigidBody3D:
-		colliding = false
+	var counts = Dictionary()
+	for item in list:
+		if not counts.has(item):
+			counts[item] = 0
+			
+		counts[item] += 1
+		
+	return counts.values().max()
 "
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_iumta"]
-radius = 0.25
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gd607"]
+transparency = 1
+albedo_color = Color(0.36, 0.36, 0.36, 0.25882354)
 
-[sub_resource type="Gradient" id="Gradient_w1vxf"]
-offsets = PackedFloat32Array(0, 0.58666664, 0.6066667, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0)
+[sub_resource type="BoxMesh" id="BoxMesh_iumta"]
+material = SubResource("StandardMaterial3D_gd607")
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_iumta"]
-gradient = SubResource("Gradient_w1vxf")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
+[sub_resource type="BoxShape3D" id="BoxShape3D_mtqsv"]
+size = Vector3(0.05, 0.05, 0.05)
 
-[node name="block_trigger" type="Area3D" unique_id=597465603]
+[node name="block_trigger" type="Node3D" unique_id=1083472797]
 script = SubResource("GDScript_mtqsv")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=999719829]
-shape = SubResource("SphereShape3D_iumta")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=154365540]
+mesh = SubResource("BoxMesh_iumta")
 
-[node name="Sprite3D" type="Sprite3D" parent="." unique_id=371830864]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-billboard = 1
-texture = SubResource("GradientTexture2D_iumta")
+[node name="colliders" type="Node3D" parent="." unique_id=1243321934]
+transform = Transform3D(0.95, 0, 0, 0, 0.95, 0, 0, 0, 0.95, 0, 0, 0)
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[node name="corner1" type="Area3D" parent="colliders" unique_id=1439365887]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="colliders/corner1" unique_id=999719829]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
+shape = SubResource("BoxShape3D_mtqsv")
+
+[node name="corner2" type="Area3D" parent="colliders" unique_id=1606006145]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="colliders/corner2" unique_id=2001251849]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
+shape = SubResource("BoxShape3D_mtqsv")
+
+[node name="corner3" type="Area3D" parent="colliders" unique_id=1514330761]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="colliders/corner3" unique_id=1275863632]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
+shape = SubResource("BoxShape3D_mtqsv")
+
+[node name="corner4" type="Area3D" parent="colliders" unique_id=151886739]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="colliders/corner4" unique_id=1732779615]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
+shape = SubResource("BoxShape3D_mtqsv")
+
+[node name="corner5" type="Area3D" parent="colliders" unique_id=2142813723]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="colliders/corner5" unique_id=834627278]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
+shape = SubResource("BoxShape3D_mtqsv")
+
+[node name="corner6" type="Area3D" parent="colliders" unique_id=1633139400]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="colliders/corner6" unique_id=868665567]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
+shape = SubResource("BoxShape3D_mtqsv")
+
+[node name="corner7" type="Area3D" parent="colliders" unique_id=1138438378]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="colliders/corner7" unique_id=181736533]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
+shape = SubResource("BoxShape3D_mtqsv")
+
+[node name="corner8" type="Area3D" parent="colliders" unique_id=86032046]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="colliders/corner8" unique_id=2067713876]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
+shape = SubResource("BoxShape3D_mtqsv")

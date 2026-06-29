@@ -38,6 +38,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 [node name="sight_ray" type="RayCast3D" parent="camera" unique_id=1438137964]
 target_position = Vector3(0, 0, -4)
 
+[node name="grab_node" type="Node3D" parent="camera" unique_id=1357174953]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+
 [node name="crosshair" type="Sprite2D" parent="." unique_id=615515627]
 position = Vector2(800, 450)
 scale = Vector2(0.1, 0.1)
