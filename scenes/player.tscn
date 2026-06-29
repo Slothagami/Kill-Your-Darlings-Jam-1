@@ -66,3 +66,10 @@ offset = Vector2(0, 1)
 [node name="hit_sound" type="AudioStreamPlayer2D" parent="." unique_id=1660642280]
 stream = ExtResource("3_qhqgy")
 volume_db = 6.0
+
+[node name="controls_prompt" type="Label" parent="HUD" unique_id=1888729898]
+offset_top = 634.0
+offset_right = 1600.0
+offset_bottom = 657.0
+text = "Press Shift+Scroll to rotate hitting force"
+horizontal_alignment = 1
