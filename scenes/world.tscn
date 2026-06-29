@@ -319,11 +319,7 @@ shape = SubResource("BoxShape3D_wse8f")
 
 [node name="prompt_trigger2" parent="triggers" unique_id=1949346872 instance=ExtResource("10_wse8f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.938549)
-<<<<<<< HEAD
 text = "Press E to pick up blocks."
-=======
-text = "Click to bonk a block. E to pick up."
->>>>>>> 365695d119799a554aa5cb4a3337f48632bb1a34
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/prompt_trigger2" unique_id=1243541218]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 51.10294)
