@@ -61,3 +61,10 @@ centered = false
 offset = Vector2(0, 1)
 
 [node name="PauseMenu" parent="CanvasLayer" unique_id=1515082146 instance=ExtResource("2_onrkg")]
+
+[node name="controls_prompt" type="Label" parent="CanvasLayer" unique_id=1888729898]
+offset_top = 634.0
+offset_right = 1600.0
+offset_bottom = 657.0
+text = "Press Shift+Scroll to rotate hitting force"
+horizontal_alignment = 1

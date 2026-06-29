@@ -25,268 +25,272 @@ size = Vector3(10, 10, 10)
 
 [node name="world" type="Node3D" unique_id=1494277180]
 
-[node name="boundary" type="StaticBody3D" parent="." unique_id=317864315]
+[node name="environment" type="Node3D" parent="." unique_id=1145864662]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="boundary" unique_id=1149321290]
+[node name="boundary" type="StaticBody3D" parent="environment" unique_id=317864315]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="environment/boundary" unique_id=1149321290]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 13, -66)
 shape = SubResource("BoxShape3D_iumta")
 
-[node name="boundary2" type="StaticBody3D" parent="." unique_id=613832847]
+[node name="boundary2" type="StaticBody3D" parent="environment" unique_id=613832847]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="boundary2" unique_id=448670104]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="environment/boundary2" unique_id=448670104]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 13, -66)
 shape = SubResource("BoxShape3D_iumta")
 
-[node name="floor" parent="." unique_id=776123889 instance=ExtResource("1_f3sb7")]
+[node name="floor" parent="environment" unique_id=776123889 instance=ExtResource("1_f3sb7")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="environment" unique_id=1943285152]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 6, 3)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="environment/DirectionalLight3D" unique_id=1063168217]
+environment = SubResource("Environment_d14c3")
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="environment" unique_id=1647359959]
+transform = Transform3D(1, 0, 0, 0, -0.99978334, -0.020816596, 0, 0.020816596, -0.99978334, 0, 4.081871, 3)
+light_energy = 0.2
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="environment/DirectionalLight3D2" unique_id=699004839]
+environment = SubResource("Environment_d14c3")
 
 [node name="player" parent="." unique_id=863557044 instance=ExtResource("2_fj7yv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 73.23356)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1943285152]
-transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 6, 3)
+[node name="puzzles" type="Node3D" parent="." unique_id=1542881138]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="DirectionalLight3D" unique_id=1063168217]
-environment = SubResource("Environment_d14c3")
-
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=1647359959]
-transform = Transform3D(1, 0, 0, 0, -0.9997833, -0.020816594, 0, 0.020816594, -0.9997833, 0, 4.081871, 3)
-light_energy = 0.2
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="DirectionalLight3D2" unique_id=699004839]
-environment = SubResource("Environment_d14c3")
-
-[node name="puzzle 1" type="Node3D" parent="." unique_id=1764623448]
+[node name="puzzle 1" type="Node3D" parent="puzzles" unique_id=1764623448]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11.436634)
 
-[node name="block" parent="puzzle 1" unique_id=1935572326 instance=ExtResource("4_aqk2v")]
+[node name="block" parent="puzzles/puzzle 1" unique_id=1935572326 instance=ExtResource("4_aqk2v")]
 transform = Transform3D(0.70710677, 0, 0.7071067, 0, 0.99999994, 0, -0.70710677, 0, 0.7071067, 0.042, 0.5, -4)
 
-[node name="wall" parent="puzzle 1" unique_id=1633485183 instance=ExtResource("6_dwbse")]
+[node name="wall" parent="puzzles/puzzle 1" unique_id=1633485183 instance=ExtResource("6_dwbse")]
 transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 2, -11.563366)
 
-[node name="trigger_manager" parent="puzzle 1" unique_id=1580539337 node_paths=PackedStringArray("target") instance=ExtResource("5_gbfbk")]
+[node name="trigger_manager" parent="puzzles/puzzle 1" unique_id=1580539337 node_paths=PackedStringArray("target") instance=ExtResource("5_gbfbk")]
 target = NodePath("../wall")
 
-[node name="block_trigger" parent="puzzle 1/trigger_manager" unique_id=597465603 instance=ExtResource("5_pkg7o")]
+[node name="block_trigger" parent="puzzles/puzzle 1/trigger_manager" unique_id=597465603 instance=ExtResource("5_pkg7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -4)
 
-[node name="large_wall2" parent="puzzle 1" unique_id=1108057630 instance=ExtResource("5_036b0")]
+[node name="large_wall2" parent="puzzles/puzzle 1" unique_id=1108057630 instance=ExtResource("5_036b0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -10.563366)
 
-[node name="puzzle 6" type="Node3D" parent="." unique_id=1616206738]
+[node name="puzzle 6" type="Node3D" parent="puzzles" unique_id=1616206738]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15.563366)
 
-[node name="block" parent="puzzle 6" unique_id=321213083 instance=ExtResource("4_aqk2v")]
+[node name="block" parent="puzzles/puzzle 6" unique_id=321213083 instance=ExtResource("4_aqk2v")]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -1, 1.5, -3.5)
 grabable = false
 
-[node name="wall" parent="puzzle 6" unique_id=1410691871 instance=ExtResource("6_dwbse")]
+[node name="wall" parent="puzzles/puzzle 6" unique_id=1410691871 instance=ExtResource("6_dwbse")]
 transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 2, -11.563366)
 
-[node name="trigger_manager" parent="puzzle 6" unique_id=707568835 node_paths=PackedStringArray("target") instance=ExtResource("5_gbfbk")]
+[node name="trigger_manager" parent="puzzles/puzzle 6" unique_id=707568835 node_paths=PackedStringArray("target") instance=ExtResource("5_gbfbk")]
 target = NodePath("../wall")
 
-[node name="block_trigger" parent="puzzle 6/trigger_manager" unique_id=1083472797 instance=ExtResource("5_pkg7o")]
+[node name="block_trigger" parent="puzzles/puzzle 6/trigger_manager" unique_id=1083472797 instance=ExtResource("5_pkg7o")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.5, -3.5)
 
-[node name="large_wall2" parent="puzzle 6" unique_id=1258749614 instance=ExtResource("5_036b0")]
+[node name="large_wall2" parent="puzzles/puzzle 6" unique_id=1258749614 instance=ExtResource("5_036b0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -10.563366)
 
-[node name="immovable_block" parent="puzzle 6" unique_id=1998177957 instance=ExtResource("3_tlwt5")]
+[node name="immovable_block" parent="puzzles/puzzle 6" unique_id=1998177957 instance=ExtResource("3_tlwt5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, -3.5)
 
-[node name="immovable_block2" parent="puzzle 6" unique_id=413271609 instance=ExtResource("3_tlwt5")]
+[node name="immovable_block2" parent="puzzles/puzzle 6" unique_id=413271609 instance=ExtResource("3_tlwt5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -3.5)
 
-[node name="immovable_block3" parent="puzzle 6" unique_id=1850979737 instance=ExtResource("3_tlwt5")]
+[node name="immovable_block3" parent="puzzles/puzzle 6" unique_id=1850979737 instance=ExtResource("3_tlwt5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, -3.5)
 
-[node name="immovable_block6" parent="puzzle 6" unique_id=1350711532 instance=ExtResource("3_tlwt5")]
+[node name="immovable_block6" parent="puzzles/puzzle 6" unique_id=1350711532 instance=ExtResource("3_tlwt5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, -3.5)
 
-[node name="immovable_block7" parent="puzzle 6" unique_id=891599997 instance=ExtResource("3_tlwt5")]
+[node name="immovable_block7" parent="puzzles/puzzle 6" unique_id=891599997 instance=ExtResource("3_tlwt5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5, -3.5)
 
-[node name="immovable_block8" parent="puzzle 6" unique_id=337430868 instance=ExtResource("3_tlwt5")]
+[node name="immovable_block8" parent="puzzles/puzzle 6" unique_id=337430868 instance=ExtResource("3_tlwt5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -3.5)
 
-[node name="immovable_block9" parent="puzzle 6" unique_id=1275425605 instance=ExtResource("3_tlwt5")]
+[node name="immovable_block9" parent="puzzles/puzzle 6" unique_id=1275425605 instance=ExtResource("3_tlwt5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2.5, -3.5)
 
-[node name="immovable_block10" parent="puzzle 6" unique_id=2078022450 instance=ExtResource("3_tlwt5")]
+[node name="immovable_block10" parent="puzzles/puzzle 6" unique_id=2078022450 instance=ExtResource("3_tlwt5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, -3.5)
 
-[node name="immovable_block4" parent="puzzle 6" unique_id=60742629 instance=ExtResource("3_tlwt5")]
+[node name="immovable_block4" parent="puzzles/puzzle 6" unique_id=60742629 instance=ExtResource("3_tlwt5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, -3.5)
 
-[node name="immovable_block5" parent="puzzle 6" unique_id=2131896655 instance=ExtResource("3_tlwt5")]
+[node name="immovable_block5" parent="puzzles/puzzle 6" unique_id=2131896655 instance=ExtResource("3_tlwt5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.5, -3.5)
 
-[node name="puzzle 8" type="Node3D" parent="." unique_id=2139844994]
+[node name="puzzle 8" type="Node3D" parent="puzzles" unique_id=2139844994]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 37.563366)
 
-[node name="block" parent="puzzle 8" unique_id=1068693160 instance=ExtResource("4_aqk2v")]
+[node name="block" parent="puzzles/puzzle 8" unique_id=1068693160 instance=ExtResource("4_aqk2v")]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -3, 0.5, -4)
 grabable = false
 
-[node name="wall" parent="puzzle 8" unique_id=1186620138 instance=ExtResource("6_dwbse")]
+[node name="wall" parent="puzzles/puzzle 8" unique_id=1186620138 instance=ExtResource("6_dwbse")]
 transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 2, -11.563366)
 
-[node name="trigger_manager" parent="puzzle 8" unique_id=772438929 node_paths=PackedStringArray("target") instance=ExtResource("5_gbfbk")]
+[node name="trigger_manager" parent="puzzles/puzzle 8" unique_id=772438929 node_paths=PackedStringArray("target") instance=ExtResource("5_gbfbk")]
 target = NodePath("../wall")
 
-[node name="block_trigger" parent="puzzle 8/trigger_manager" unique_id=1737632383 instance=ExtResource("5_pkg7o")]
+[node name="block_trigger" parent="puzzles/puzzle 8/trigger_manager" unique_id=1737632383 instance=ExtResource("5_pkg7o")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 3, 0.5, -4)
 
-[node name="large_wall2" parent="puzzle 8" unique_id=79434384 instance=ExtResource("5_036b0")]
+[node name="large_wall2" parent="puzzles/puzzle 8" unique_id=79434384 instance=ExtResource("5_036b0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -10.563366)
 
-[node name="immovable_block" parent="puzzle 8" unique_id=866115982 instance=ExtResource("3_tlwt5")]
+[node name="immovable_block" parent="puzzles/puzzle 8" unique_id=866115982 instance=ExtResource("3_tlwt5")]
 transform = Transform3D(0.5, 0, 0, 0, 1.5, 0, 0, 0, 0.5, -3, 0.75, -3.2)
 
-[node name="immovable_block2" parent="puzzle 8" unique_id=1578154200 instance=ExtResource("3_tlwt5")]
+[node name="immovable_block2" parent="puzzles/puzzle 8" unique_id=1578154200 instance=ExtResource("3_tlwt5")]
 transform = Transform3D(0.5, 0, 0, 0, 1.5, 0, 0, 0, 0.5, -3, 0.75, -4.8)
 
-[node name="immovable_block3" parent="puzzle 8" unique_id=418952864 instance=ExtResource("3_tlwt5")]
+[node name="immovable_block3" parent="puzzles/puzzle 8" unique_id=418952864 instance=ExtResource("3_tlwt5")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 2.1, -3, 1.26, -4)
 
-[node name="grabbable_trigger" parent="puzzle 8" unique_id=214419715 instance=ExtResource("9_ioo17")]
+[node name="grabbable_trigger" parent="puzzles/puzzle 8" unique_id=214419715 instance=ExtResource("9_ioo17")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4152884, 0, -4.7955866)
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="puzzle 8/grabbable_trigger" unique_id=687932557]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="puzzles/puzzle 8/grabbable_trigger" unique_id=687932557]
 shape = SubResource("BoxShape3D_gd607")
 
-[node name="grabbable_trigger2" parent="puzzle 8" unique_id=437288387 instance=ExtResource("9_ioo17")]
+[node name="grabbable_trigger2" parent="puzzles/puzzle 8" unique_id=437288387 instance=ExtResource("9_ioo17")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.426233, 0, -4.7955866)
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="puzzle 8/grabbable_trigger2" unique_id=1526384069]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="puzzles/puzzle 8/grabbable_trigger2" unique_id=1526384069]
 shape = SubResource("BoxShape3D_gd607")
 
-[node name="puzzle 7" type="Node3D" parent="." unique_id=553998720]
+[node name="puzzle 7" type="Node3D" parent="puzzles" unique_id=553998720]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 61.779922)
 
-[node name="block" parent="puzzle 7" unique_id=947333669 instance=ExtResource("4_aqk2v")]
+[node name="block" parent="puzzles/puzzle 7" unique_id=947333669 instance=ExtResource("4_aqk2v")]
 transform = Transform3D(0.8527886, 0.5222562, 0, -0.4907665, 0.8013693, -0.34198752, -0.1786051, 0.29164305, 0.9397045, 0.041999817, 6.0026655, 0)
 
-[node name="wall" parent="puzzle 7" unique_id=1743388064 instance=ExtResource("6_dwbse")]
+[node name="wall" parent="puzzles/puzzle 7" unique_id=1743388064 instance=ExtResource("6_dwbse")]
 transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 2, -11.563366)
 
-[node name="trigger_manager" parent="puzzle 7" unique_id=748665848 node_paths=PackedStringArray("target") instance=ExtResource("5_gbfbk")]
+[node name="trigger_manager" parent="puzzles/puzzle 7" unique_id=748665848 node_paths=PackedStringArray("target") instance=ExtResource("5_gbfbk")]
 target = NodePath("../wall")
 
-[node name="block_trigger" parent="puzzle 7/trigger_manager" unique_id=841238641 instance=ExtResource("5_pkg7o")]
+[node name="block_trigger" parent="puzzles/puzzle 7/trigger_manager" unique_id=841238641 instance=ExtResource("5_pkg7o")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.5, -4)
 
-[node name="large_wall2" parent="puzzle 7" unique_id=635153984 instance=ExtResource("5_036b0")]
+[node name="large_wall2" parent="puzzles/puzzle 7" unique_id=635153984 instance=ExtResource("5_036b0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -10.563366)
 
-[node name="puzzle 2" type="Node3D" parent="." unique_id=2075028464]
+[node name="puzzle 2" type="Node3D" parent="puzzles" unique_id=2075028464]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, -86.46901)
 
-[node name="wall" parent="puzzle 2" unique_id=516789346 instance=ExtResource("6_dwbse")]
+[node name="wall" parent="puzzles/puzzle 2" unique_id=516789346 instance=ExtResource("6_dwbse")]
 transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, -5, 1.5, -13.114475)
 
-[node name="immovable_block3" parent="puzzle 2" unique_id=1016540491 instance=ExtResource("3_tlwt5")]
+[node name="immovable_block3" parent="puzzles/puzzle 2" unique_id=1016540491 instance=ExtResource("3_tlwt5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
 
-[node name="immovable_block2" parent="puzzle 2" unique_id=1016472119 instance=ExtResource("3_tlwt5")]
+[node name="immovable_block2" parent="puzzles/puzzle 2" unique_id=1016472119 instance=ExtResource("3_tlwt5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="immovable_block" parent="puzzle 2" unique_id=334339266 instance=ExtResource("3_tlwt5")]
+[node name="immovable_block" parent="puzzles/puzzle 2" unique_id=334339266 instance=ExtResource("3_tlwt5")]
 
-[node name="block4" parent="puzzle 2" unique_id=1588999384 instance=ExtResource("4_aqk2v")]
+[node name="block4" parent="puzzles/puzzle 2" unique_id=1588999384 instance=ExtResource("4_aqk2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.870749, 0, -1.8868828)
 
-[node name="block" parent="puzzle 2" unique_id=903602232 instance=ExtResource("4_aqk2v")]
+[node name="block" parent="puzzles/puzzle 2" unique_id=903602232 instance=ExtResource("4_aqk2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.029132, 0, -1.7840004)
 
-[node name="block2" parent="puzzle 2" unique_id=1725793169 instance=ExtResource("4_aqk2v")]
+[node name="block2" parent="puzzles/puzzle 2" unique_id=1725793169 instance=ExtResource("4_aqk2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.267169, 0, -1.553257)
 
-[node name="trigger_manager" parent="puzzle 2" unique_id=2146652512 node_paths=PackedStringArray("target") instance=ExtResource("5_gbfbk")]
+[node name="trigger_manager" parent="puzzles/puzzle 2" unique_id=2146652512 node_paths=PackedStringArray("target") instance=ExtResource("5_gbfbk")]
 target = NodePath("../wall")
 
-[node name="block_trigger" parent="puzzle 2/trigger_manager" unique_id=826134771 instance=ExtResource("5_pkg7o")]
+[node name="block_trigger" parent="puzzles/puzzle 2/trigger_manager" unique_id=826134771 instance=ExtResource("5_pkg7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 0)
 
-[node name="block_trigger3" parent="puzzle 2/trigger_manager" unique_id=1478381156 instance=ExtResource("5_pkg7o")]
+[node name="block_trigger3" parent="puzzles/puzzle 2/trigger_manager" unique_id=1478381156 instance=ExtResource("5_pkg7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1, 0)
 
-[node name="block_trigger2" parent="puzzle 2/trigger_manager" unique_id=1549174979 instance=ExtResource("5_pkg7o")]
+[node name="block_trigger2" parent="puzzles/puzzle 2/trigger_manager" unique_id=1549174979 instance=ExtResource("5_pkg7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
 
-[node name="large_wall3" parent="puzzle 2" unique_id=918764228 instance=ExtResource("5_036b0")]
+[node name="large_wall3" parent="puzzles/puzzle 2" unique_id=918764228 instance=ExtResource("5_036b0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -0.5, -12.114475)
 
-[node name="puzzle 4" type="Node3D" parent="." unique_id=672249433]
+[node name="puzzle 4" type="Node3D" parent="puzzles" unique_id=672249433]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, -34.885525)
 
-[node name="wall" parent="puzzle 4" unique_id=1695250045 instance=ExtResource("6_dwbse")]
+[node name="wall" parent="puzzles/puzzle 4" unique_id=1695250045 instance=ExtResource("6_dwbse")]
 transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, -5, 1.5, -13.114475)
 
-[node name="block4" parent="puzzle 4" unique_id=1022925867 instance=ExtResource("4_aqk2v")]
+[node name="block4" parent="puzzles/puzzle 4" unique_id=1022925867 instance=ExtResource("4_aqk2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.870749, 0, -1.8868828)
 
-[node name="block" parent="puzzle 4" unique_id=2009812138 instance=ExtResource("4_aqk2v")]
+[node name="block" parent="puzzles/puzzle 4" unique_id=2009812138 instance=ExtResource("4_aqk2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.029132, 0, -1.7840004)
 
-[node name="trigger_manager" parent="puzzle 4" unique_id=1772171047 node_paths=PackedStringArray("target") instance=ExtResource("5_gbfbk")]
+[node name="trigger_manager" parent="puzzles/puzzle 4" unique_id=1772171047 node_paths=PackedStringArray("target") instance=ExtResource("5_gbfbk")]
 target = NodePath("../wall")
 
-[node name="block_trigger3" parent="puzzle 4/trigger_manager" unique_id=1186671472 instance=ExtResource("5_pkg7o")]
+[node name="block_trigger3" parent="puzzles/puzzle 4/trigger_manager" unique_id=1186671472 instance=ExtResource("5_pkg7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1, 0)
 
-[node name="block_trigger4" parent="puzzle 4/trigger_manager" unique_id=491742001 instance=ExtResource("5_pkg7o")]
+[node name="block_trigger4" parent="puzzles/puzzle 4/trigger_manager" unique_id=491742001 instance=ExtResource("5_pkg7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 0)
 
-[node name="large_wall3" parent="puzzle 4" unique_id=1343577168 instance=ExtResource("5_036b0")]
+[node name="large_wall3" parent="puzzles/puzzle 4" unique_id=1343577168 instance=ExtResource("5_036b0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -0.5, -12.114475)
 
-[node name="puzzle 5" type="Node3D" parent="." unique_id=1427170461]
+[node name="puzzle 5" type="Node3D" parent="puzzles" unique_id=1427170461]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, -60.555096)
 
-[node name="wall" parent="puzzle 5" unique_id=386818196 instance=ExtResource("6_dwbse")]
+[node name="wall" parent="puzzles/puzzle 5" unique_id=386818196 instance=ExtResource("6_dwbse")]
 transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, -5, 1.5, -13.114475)
 
-[node name="block4" parent="puzzle 5" unique_id=759487018 instance=ExtResource("4_aqk2v")]
+[node name="block4" parent="puzzles/puzzle 5" unique_id=759487018 instance=ExtResource("4_aqk2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.870749, 0, -1.8868828)
 
-[node name="block" parent="puzzle 5" unique_id=13501029 instance=ExtResource("4_aqk2v")]
+[node name="block" parent="puzzles/puzzle 5" unique_id=13501029 instance=ExtResource("4_aqk2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.029132, 0, -1.7840004)
 
-[node name="trigger_manager" parent="puzzle 5" unique_id=563961748 node_paths=PackedStringArray("target") instance=ExtResource("5_gbfbk")]
+[node name="trigger_manager" parent="puzzles/puzzle 5" unique_id=563961748 node_paths=PackedStringArray("target") instance=ExtResource("5_gbfbk")]
 target = NodePath("../wall")
 
-[node name="block_trigger3" parent="puzzle 5/trigger_manager" unique_id=63968229 instance=ExtResource("5_pkg7o")]
+[node name="block_trigger3" parent="puzzles/puzzle 5/trigger_manager" unique_id=63968229 instance=ExtResource("5_pkg7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 0)
 
-[node name="block_trigger4" parent="puzzle 5/trigger_manager" unique_id=1443065817 instance=ExtResource("5_pkg7o")]
+[node name="block_trigger4" parent="puzzles/puzzle 5/trigger_manager" unique_id=1443065817 instance=ExtResource("5_pkg7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
 
-[node name="large_wall3" parent="puzzle 5" unique_id=1221675155 instance=ExtResource("5_036b0")]
+[node name="large_wall3" parent="puzzles/puzzle 5" unique_id=1221675155 instance=ExtResource("5_036b0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -0.5, -12.114475)
 
-[node name="puzzle 3" type="Node3D" parent="." unique_id=734005563]
+[node name="puzzle 3" type="Node3D" parent="puzzles" unique_id=734005563]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, -118.66353)
 
-[node name="block3" parent="puzzle 3" unique_id=750917027 instance=ExtResource("4_aqk2v")]
+[node name="block3" parent="puzzles/puzzle 3" unique_id=750917027 instance=ExtResource("4_aqk2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.547, 0, 0)
 
-[node name="block5" parent="puzzle 3" unique_id=170541157 instance=ExtResource("4_aqk2v")]
+[node name="block5" parent="puzzles/puzzle 3" unique_id=170541157 instance=ExtResource("4_aqk2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.768, 0, 0)
 
-[node name="block6" parent="puzzle 3" unique_id=1626827509 instance=ExtResource("4_aqk2v")]
+[node name="block6" parent="puzzles/puzzle 3" unique_id=1626827509 instance=ExtResource("4_aqk2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.552, 0, 0)
 
-[node name="trigger_manager" parent="puzzle 3" unique_id=1110950778 node_paths=PackedStringArray("target") instance=ExtResource("5_gbfbk")]
-target = NodePath("../../boundary")
+[node name="trigger_manager" parent="puzzles/puzzle 3" unique_id=1110950778 node_paths=PackedStringArray("target") instance=ExtResource("5_gbfbk")]
+target = NodePath("../../../environment/boundary")
 
-[node name="block_trigger" parent="puzzle 3/trigger_manager" unique_id=1095847528 instance=ExtResource("5_pkg7o")]
+[node name="block_trigger" parent="puzzles/puzzle 3/trigger_manager" unique_id=1095847528 instance=ExtResource("5_pkg7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
 
-[node name="block_trigger2" parent="puzzle 3/trigger_manager" unique_id=1932173784 instance=ExtResource("5_pkg7o")]
+[node name="block_trigger2" parent="puzzles/puzzle 3/trigger_manager" unique_id=1932173784 instance=ExtResource("5_pkg7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, 0)
 
-[node name="block_trigger3" parent="puzzle 3/trigger_manager" unique_id=1514200977 instance=ExtResource("5_pkg7o")]
+[node name="block_trigger3" parent="puzzles/puzzle 3/trigger_manager" unique_id=1514200977 instance=ExtResource("5_pkg7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, 0)
