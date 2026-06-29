@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://biouc7xfwttcq"]
+[gd_scene format=3 uid="uid://dge2ubcrnu6up"]
 
 [ext_resource type="PackedScene" uid="uid://0fan6cl30i8g" path="res://scenes/floor.tscn" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://co1y4p2f6iopx" path="res://scenes/player.tscn" id="2_fj7yv"]
@@ -28,7 +28,10 @@ size = Vector3(10, 10, 10)
 size = Vector3(2, 4, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bht8a"]
-size = Vector3(20, 4, 10)
+size = Vector3(20, 4, 7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w7kh3"]
+size = Vector3(20, 4, 5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ic0uy"]
 size = Vector3(20, 4, 10)
@@ -181,7 +184,7 @@ shape = SubResource("BoxShape3D_gd607")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 61.779922)
 
 [node name="block" parent="puzzles/puzzle 7" unique_id=947333669 instance=ExtResource("4_aqk2v")]
-transform = Transform3D(0.8527886, 0.5222562, 0, -0.4907665, 0.8013693, -0.34198752, -0.1786051, 0.29164305, 0.9397045, 0.041999817, 6.0026655, 0)
+transform = Transform3D(0.8527886, 0.5222562, 0, -0.4907665, 0.8013693, -0.34198752, -0.1786051, 0.29164305, 0.9397045, 0.041999817, 6.0026655, 3.9284744)
 
 [node name="wall" parent="puzzles/puzzle 7" unique_id=1743388064 instance=ExtResource("6_dwbse")]
 transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 2, -11.563366)
@@ -316,11 +319,19 @@ shape = SubResource("BoxShape3D_wse8f")
 
 [node name="prompt_trigger2" parent="triggers" unique_id=1949346872 instance=ExtResource("10_wse8f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.938549)
-text = "Click bonk a block. E to pick up"
+text = "Press E to pick up blocks."
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/prompt_trigger2" unique_id=1243541218]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 55.455265)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 51.10294)
 shape = SubResource("BoxShape3D_bht8a")
+
+[node name="prompt_trigger4" parent="triggers" unique_id=1502139964 instance=ExtResource("10_wse8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.938549)
+text = "Click to bonk a block"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/prompt_trigger4" unique_id=1762488682]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 60.10088)
+shape = SubResource("BoxShape3D_w7kh3")
 
 [node name="prompt_trigger3" parent="triggers" unique_id=477874429 instance=ExtResource("10_wse8f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.938549)
