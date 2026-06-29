@@ -17,9 +17,9 @@ var hit_strength = PUNCH_FORCE
 @onready var sight_ray  = $camera/sight_ray
 @onready var grab_node  = $camera/grab_node
 
-@onready var crosshair       = $crosshair
-@onready var force_indicator = $force_indicator
-@onready var force_guage     = $force_indicator/guage
+@onready var crosshair       = $CanvasLayer/crosshair
+@onready var force_indicator = $CanvasLayer/force_indicator
+@onready var force_gauge     = $CanvasLayer/force_indicator/gauge
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -38,11 +38,11 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		
-	if Input.is_action_just_pressed("pause"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	#if Input.is_action_just_pressed("pause"):
+	#	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		
-	if Input.is_action_just_pressed("restart"):
-		get_tree().reload_current_scene()
+	#if Input.is_action_just_pressed("restart"):
+	#	get_tree().reload_current_scene()
 		
 	if Input.is_action_just_pressed("adjust_up"):
 		if Input.is_action_pressed("modifier_key"):
@@ -96,7 +96,7 @@ func _physics_process(delta: float) -> void:
 		
 	# update ui
 	force_indicator.rotation = hit_angle
-	force_guage.scale.x = 4 * hit_strength
+	force_gauge.scale.x = 4 * hit_strength
 	
 	if sight_ray.is_colliding():
 		crosshair.scale = Vector2(0.15, 0.15)
