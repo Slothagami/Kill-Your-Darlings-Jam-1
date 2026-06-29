@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="First Person Melee"
-run/main_scene="uid://biouc7xfwttcq"
+run/main_scene="uid://bvhpxlna4pmr0"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
