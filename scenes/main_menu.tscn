@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bvhpxlna4pmr0"]
 
-[ext_resource type="Script" uid="uid://c7ykr2redexpj" path="res://main_menu.gd" id="1_06t4h"]
+[ext_resource type="Script" uid="uid://c7ykr2redexpj" path="res://scripts/main_menu.gd" id="1_06t4h"]
 
 [node name="MainMenu" type="Control" unique_id=170748829]
 layout_mode = 3
@@ -44,3 +44,14 @@ text = "Start"
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Quit"
+
+[node name="MusicVolumeLabel" type="Label" parent="Background/CenterContainer/VBoxContainer" unique_id=374442804]
+layout_mode = 2
+text = "Music Volume"
+
+[node name="MusicVolumeSlider" type="HSlider" parent="Background/CenterContainer/VBoxContainer" unique_id=75925152]
+layout_mode = 2
+max_value = 0.7
+step = 0.01
+
+[connection signal="value_changed" from="Background/CenterContainer/VBoxContainer/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
