@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://bmuf6cst13ckv"]
+
+[ext_resource type="Script" uid="uid://bvdw3dp3a5xqt" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="PackedScene" path="res://pause_menu.tscn" id="2_onrkg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d14c3"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_d14c3"]
+
+[sub_resource type="Gradient" id="Gradient_4flbx"]
+offsets = PackedFloat32Array(0, 0.51495016, 0.6312292, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_d14c3"]
+gradient = SubResource("Gradient_4flbx")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_onrkg"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_iumta"]
+gradient = SubResource("Gradient_onrkg")
+
+[node name="player" type="CharacterBody3D" unique_id=863557044]
+script = ExtResource("1_4flbx")
+
+[node name="hitbox" type="CollisionShape3D" parent="." unique_id=59718621]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0352875, 0)
+shape = SubResource("CapsuleShape3D_d14c3")
+
+[node name="mesh" type="MeshInstance3D" parent="." unique_id=25975737]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0352875, 0)
+mesh = SubResource("CapsuleMesh_d14c3")
+
+[node name="camera" type="Camera3D" parent="." unique_id=898312643]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+
+[node name="sight_ray" type="RayCast3D" parent="camera" unique_id=1438137964]
+target_position = Vector3(0, 0, -4)
+
+[node name="grab_node" type="Node3D" parent="camera" unique_id=1357174953]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=763492780]
+
+[node name="grab_button_indicator" type="Label" parent="CanvasLayer" unique_id=627308414]
+offset_left = 795.0
+offset_top = 414.0
+offset_right = 835.0
+offset_bottom = 437.0
+text = "E: grab"
+
+[node name="crosshair" type="Sprite2D" parent="CanvasLayer" unique_id=615515627]
+position = Vector2(800, 450)
+scale = Vector2(0.1, 0.1)
+texture = SubResource("GradientTexture2D_d14c3")
+
+[node name="force_indicator" type="Sprite2D" parent="CanvasLayer" unique_id=1229160599]
+position = Vector2(800, 450)
+scale = Vector2(0.1, 0.1)
+
+[node name="gauge" type="Sprite2D" parent="CanvasLayer/force_indicator" unique_id=2138906674]
+position = Vector2(169.99976, -10)
+scale = Vector2(9.09375, 0.3125)
+texture = SubResource("GradientTexture2D_iumta")
+centered = false
+offset = Vector2(0, 1)
+
+[node name="PauseMenu" parent="CanvasLayer" unique_id=1515082146 instance=ExtResource("2_onrkg")]
+visible = false
+
+[node name="controls_prompt" type="Label" parent="CanvasLayer" unique_id=1888729898]
+offset_top = 634.0
+offset_right = 1600.0
+offset_bottom = 657.0
+text = "Press Shift+Scroll to rotate hitting force"
+horizontal_alignment = 1
