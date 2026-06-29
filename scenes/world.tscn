@@ -19,7 +19,7 @@ size = Vector3(1, 100, 500)
 
 [sub_resource type="Environment" id="Environment_d14c3"]
 background_mode = 1
-background_color = Color(0.31949997, 0.5863417, 0.71, 1)
+background_color = Color(0.67, 0.62578005, 0.5963, 1)
 sky = SubResource("Sky_fj7yv")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gd607"]
