@@ -17,9 +17,11 @@ var hit_strength = PUNCH_FORCE
 @onready var sight_ray  = $camera/sight_ray
 @onready var grab_node  = $camera/grab_node
 
-@onready var crosshair       = $CanvasLayer/crosshair
-@onready var force_indicator = $CanvasLayer/force_indicator
-@onready var force_gauge     = $CanvasLayer/force_indicator/gauge
+@onready var crosshair       = $HUD/crosshair
+@onready var force_indicator = $HUD/force_indicator
+@onready var force_gauge     = $HUD/force_indicator/gauge
+
+@onready var punch_sound = $hit_sound
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -79,6 +81,9 @@ func _physics_process(delta: float) -> void:
 					transform.basis * hit_dir * hit_strength, 
 					sight_ray.get_collision_point() - target.global_position
 				)
+			punch_sound.pitch_scale = randf_range(0.9, 1.1)
+			punch_sound.stop()
+			punch_sound.play()
 
 	# Movement
 	var input_dir := Input.get_vector("left", "right", "forward", "backward")

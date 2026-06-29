@@ -3,7 +3,7 @@ extends Node
 const MUSIC_PATH = "res://audio/music/poradovskyi-cozy-chill-lounge-music-469048.mp3"
 
 var music_player: AudioStreamPlayer
-var music_volume := 0.3
+var music_volume := 0.2
 
 
 func _ready() -> void:

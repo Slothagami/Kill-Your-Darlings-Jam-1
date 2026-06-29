@@ -51,7 +51,7 @@ text = "Music Volume"
 
 [node name="MusicVolumeSlider" type="HSlider" parent="Background/CenterContainer/VBoxContainer" unique_id=75925152]
 layout_mode = 2
-max_value = 0.7
+max_value = 0.4
 step = 0.01
 
 [connection signal="value_changed" from="Background/CenterContainer/VBoxContainer/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
