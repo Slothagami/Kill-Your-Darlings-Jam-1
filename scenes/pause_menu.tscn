@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dhju20t7ncgqp"]
 
-[ext_resource type="Script" uid="uid://cdwngawyle58t" path="res://pause_menu.gd" id="1_hdmo1"]
+[ext_resource type="Script" uid="uid://cdwngawyle58t" path="res://scripts/pause_menu.gd" id="1_hdmo1"]
 
 [node name="PauseMenu" type="Control" unique_id=1515082146]
 process_mode = 3
@@ -31,11 +31,12 @@ layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer" unique_id=6024085]
 layout_mode = 2
+theme_override_constants/separation = 32
 
 [node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=231498286]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
-text = "Paused"
+text = "Paused..."
 
 [node name="ResumeButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1126926928]
 layout_mode = 2
@@ -52,6 +53,16 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Main Menu"
 
+[node name="MusicVolumeLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=103523209]
+layout_mode = 2
+text = "Music Volume"
+
+[node name="MusicVolumeSlider" type="HSlider" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1883868963]
+layout_mode = 2
+max_value = 0.4
+step = 0.01
+
 [connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="value_changed" from="CenterContainer/PanelContainer/VBoxContainer/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]

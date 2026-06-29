@@ -1,11 +1,12 @@
 extends Control
 
-@export var main_menu_path = "res://main_menu.tscn"
+@export var main_menu_path = "res://scenes/main_menu.tscn"
 
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	hide()
+	$CenterContainer/PanelContainer/VBoxContainer/MusicVolumeSlider.set_value_no_signal(MusicManager.music_volume)
 
 
 func _input(event: InputEvent) -> void:
@@ -30,4 +31,8 @@ func _on_restart_button_pressed() -> void:
 
 func _on_main_menu_button_pressed() -> void:
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://main_menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+
+func _on_music_volume_slider_value_changed(value: float) -> void:
+	MusicManager.set_volume(value)
