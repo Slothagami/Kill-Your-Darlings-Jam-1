@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b1fbxyd86ohlv" path="res://block_trigger.tscn" id="5_pkg7o"]
 [ext_resource type="PackedScene" uid="uid://ns5o781kdyry" path="res://wall.tscn" id="6_dwbse"]
 [ext_resource type="PackedScene" uid="uid://ckhytaageoibd" path="res://grabbable_trigger.tscn" id="9_ioo17"]
+[ext_resource type="PackedScene" uid="uid://df20ywa4lo7l7" path="res://prompt_trigger.tscn" id="10_wse8f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iumta"]
 size = Vector3(1, 100, 500)
@@ -22,6 +23,9 @@ sky = SubResource("Sky_fj7yv")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gd607"]
 size = Vector3(10, 10, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bht8a"]
+size = Vector3(2, 4, 1)
 
 [node name="world" type="Node3D" unique_id=1494277180]
 
@@ -294,3 +298,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, 0)
 
 [node name="block_trigger3" parent="puzzles/puzzle 3/trigger_manager" unique_id=1514200977 instance=ExtResource("5_pkg7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, 0)
+
+[node name="triggers" type="Node3D" parent="." unique_id=670820307]
+
+[node name="prompt_trigger" parent="triggers" unique_id=1492379982 instance=ExtResource("10_wse8f")]
+text = "Press Shift+Scroll to rotate hitting force"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/prompt_trigger" unique_id=2106996880]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 49.755157)
+shape = SubResource("BoxShape3D_bht8a")

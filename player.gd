@@ -10,6 +10,8 @@ var grab_start_pos:  Vector3
 var grab_target_pos: Vector3
 var grabbing: RigidBody3D = null
 
+var showing_prompt = false
+
 var hit_angle = PI/2
 var hit_strength = PUNCH_FORCE
 
@@ -20,6 +22,8 @@ var hit_strength = PUNCH_FORCE
 @onready var crosshair       = $CanvasLayer/crosshair
 @onready var force_indicator = $CanvasLayer/force_indicator
 @onready var force_gauge     = $CanvasLayer/force_indicator/gauge
+
+@onready var prompt = $CanvasLayer/controls_prompt
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -69,6 +73,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("attack"):
 		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			
+		showing_prompt = false
 		
 		# Cast a ray to find the nearest physics body and apply a force
 		if sight_ray.is_colliding():
@@ -97,10 +103,12 @@ func _physics_process(delta: float) -> void:
 	# update ui
 	force_indicator.rotation = hit_angle
 	force_gauge.scale.x = 4 * hit_strength
+	prompt.visible = showing_prompt
 	
 	if sight_ray.is_colliding():
 		crosshair.scale = Vector2(0.15, 0.15)
 	else:
 		crosshair.scale = Vector2(0.1, 0.1)
+		
 	
 	move_and_slide()
