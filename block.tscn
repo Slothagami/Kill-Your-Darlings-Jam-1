@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://h22a1wpaconf"]
 
+[ext_resource type="Script" uid="uid://dgoya2lpweqmw" path="res://block.gd" id="1_im0tn"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_d14c3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7xaro"]
@@ -10,6 +12,7 @@ material = SubResource("StandardMaterial3D_7xaro")
 
 [node name="block" type="RigidBody3D" unique_id=321213083]
 contact_monitor = true
+script = ExtResource("1_im0tn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=737623920]
 shape = SubResource("BoxShape3D_d14c3")

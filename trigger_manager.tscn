@@ -6,6 +6,7 @@
 script = ExtResource("1_lnwyw")
 
 [node name="timer" type="Timer" parent="." unique_id=1838231210]
+wait_time = 0.5
 autostart = true
 
 [connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]

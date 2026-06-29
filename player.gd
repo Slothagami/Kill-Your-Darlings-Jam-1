@@ -61,7 +61,7 @@ func _physics_process(delta: float) -> void:
 		if grabbing == null:
 			if sight_ray.is_colliding():
 				var target = sight_ray.get_collider()
-				if target is RigidBody3D:
+				if (target is RigidBody3D) and target.grabable:
 					grabbing = target
 		else:
 			grabbing = null

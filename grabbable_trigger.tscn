@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://ckhytaageoibd"]
+
+[ext_resource type="Script" uid="uid://cpi4dqombrgxg" path="res://grabbable_trigger.gd" id="1_vwomv"]
+
+[node name="grabbable_trigger" type="Area3D" unique_id=138519645]
+script = ExtResource("1_vwomv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
