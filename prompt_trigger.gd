@@ -5,11 +5,10 @@ extends Area3D
 
 var triggered = false
 
-
 func _on_body_entered(body: Node3D) -> void:
 	if triggered: return
-	
-	if body.is_in_group("player"):
-		body.showing_prompt = true
-		body.prompt.text = text
+	if body and body is CharacterBody3D:
+		var player = body
+		player.showing_prompt = true
+		player.prompt.text = text
 		triggered = true

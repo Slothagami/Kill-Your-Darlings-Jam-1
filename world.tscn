@@ -24,8 +24,14 @@ sky = SubResource("Sky_fj7yv")
 [sub_resource type="BoxShape3D" id="BoxShape3D_gd607"]
 size = Vector3(10, 10, 10)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_bht8a"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_wse8f"]
 size = Vector3(2, 4, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bht8a"]
+size = Vector3(20, 4, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ic0uy"]
+size = Vector3(20, 4, 10)
 
 [node name="world" type="Node3D" unique_id=1494277180]
 
@@ -302,8 +308,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, 0)
 [node name="triggers" type="Node3D" parent="." unique_id=670820307]
 
 [node name="prompt_trigger" parent="triggers" unique_id=1492379982 instance=ExtResource("10_wse8f")]
-text = "Press Shift+Scroll to rotate hitting force"
+text = "Scroll to rotate bonk direction"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/prompt_trigger" unique_id=2106996880]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 49.755157)
+shape = SubResource("BoxShape3D_wse8f")
+
+[node name="prompt_trigger2" parent="triggers" unique_id=1949346872 instance=ExtResource("10_wse8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.938549)
+text = "Click bonk a block. E to pick up"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/prompt_trigger2" unique_id=1243541218]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 55.455265)
 shape = SubResource("BoxShape3D_bht8a")
+
+[node name="prompt_trigger3" parent="triggers" unique_id=477874429 instance=ExtResource("10_wse8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.938549)
+text = "Shift+Scroll to adjust bonking force"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="triggers/prompt_trigger3" unique_id=25197010]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -8.93443)
+shape = SubResource("BoxShape3D_ic0uy")
