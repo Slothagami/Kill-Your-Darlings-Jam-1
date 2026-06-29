@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dvs1xj2jn24wo"]
+
+[ext_resource type="Script" path="res://prompt_trigger.gd" id="1_x1dmq"]
+
+[node name="prompt_trigger" type="Area3D" unique_id=1492379982]
+script = ExtResource("1_x1dmq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
