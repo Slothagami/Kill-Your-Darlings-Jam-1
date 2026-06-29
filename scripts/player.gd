@@ -19,9 +19,9 @@ var hit_strength = PUNCH_FORCE
 @onready var sight_ray  = $camera/sight_ray
 @onready var grab_node  = $camera/grab_node
 
-@onready var crosshair       = $HUD/crosshair
-@onready var force_indicator = $HUD/force_indicator
-@onready var force_gauge     = $HUD/force_indicator/gauge
+@onready var crosshair       = $HUD/CrosshairControl/crosshair
+@onready var force_indicator = $HUD/CrosshairControl/force_indicator
+@onready var force_gauge     = $HUD/CrosshairControl/force_indicator/gauge
 
 @onready var punch_sound = $hit_sound
 
