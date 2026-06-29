@@ -25,7 +25,7 @@ var hit_strength = PUNCH_FORCE
 
 @onready var punch_sound = $hit_sound
 
-@onready var prompt = $CanvasLayer/controls_prompt
+@onready var prompt = $HUD/controls_prompt
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
